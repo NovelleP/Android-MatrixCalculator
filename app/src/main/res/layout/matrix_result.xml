@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <GridView
+        android:id="@+id/gvMatrix3"
+        android:layout_width="150dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="40dp"
+        android:stretchMode="columnWidth"
+        android:layout_centerHorizontal="true"/>
+
+    <LinearLayout
+        android:id="@+id/llBt1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="40dp"
+        android:layout_below="@id/gvMatrix3"
+        android:layout_centerHorizontal="true">
+        <Button
+            android:id="@+id/btAdd"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:text="+"/>
+        <Button
+            android:id="@+id/btSub"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:text="-"/>
+        <Button
+            android:id="@+id/btMul"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:text="*"/>
+        <Button
+            android:id="@+id/btDet"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:text="|A|"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="="/>
+        <EditText
+            android:id="@+id/etDeterminant"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="numberSigned"
+            android:scrollHorizontally="true"
+            android:singleLine="true"
+            android:gravity="right|center_vertical" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/llBt1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp">
+        <Button
+            android:id="@+id/btResult"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Result"/>
+        <Button
+            android:id="@+id/btReset3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Reset"/>
+    </LinearLayout>
+
+</RelativeLayout>

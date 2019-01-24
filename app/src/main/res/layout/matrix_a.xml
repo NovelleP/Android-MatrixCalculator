@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <GridView
+        android:id="@+id/gvMatrix1"
+        android:layout_width="150dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="40dp"
+        android:stretchMode="columnWidth"
+        android:layout_centerHorizontal="true"/>
+    <TextView
+        android:id="@+id/tvRows1"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="Rows"
+        android:textSize="25dp"
+        android:layout_below="@id/gvMatrix1"
+        />
+    <Spinner
+        android:id="@+id/spinner1Rows"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_below="@id/gvMatrix1"
+        android:layout_toRightOf="@id/tvRows1" />
+
+    <TextView
+        android:id="@+id/tvColumns1"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="Columns"
+        android:textSize="25dp"
+        android:layout_below="@id/tvRows1"
+        />
+    <Spinner
+        android:id="@+id/spinner1Columns"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/spinner1Rows"
+        android:layout_toRightOf="@+id/tvColumns1"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/tvColumns1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp">
+        <Button
+            android:id="@+id/btReset1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Reset"/>
+        <Button
+            android:id="@+id/btResize1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Resize"/>
+    </LinearLayout>
+
+</RelativeLayout>
