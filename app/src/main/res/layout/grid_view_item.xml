@@ -3,8 +3,8 @@
     android:id="@+id/etItem"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:inputType="numberDecimal"
+    android:inputType="numberSigned|numberDecimal"
     android:scrollHorizontally="true"
     android:singleLine="true"
-    android:gravity="right|center_vertical" >
+    android:gravity="right|center_vertical">
 </EditText>

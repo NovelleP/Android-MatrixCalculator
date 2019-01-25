@@ -6,8 +6,8 @@
 
     <GridView
         android:id="@+id/gvMatrix3"
-        android:layout_width="150dp"
-        android:layout_height="200dp"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:stretchMode="columnWidth"
         android:layout_centerHorizontal="true"/>
@@ -23,34 +23,51 @@
         <Button
             android:id="@+id/btAdd"
             android:layout_width="40dp"
-            android:layout_height="wrap_content"
-            android:text="+"/>
+            android:layout_height="40dp"
+            android:text="+"
+            android:background="@color/unselectedButton"/>
         <Button
             android:id="@+id/btSub"
             android:layout_width="40dp"
-            android:layout_height="wrap_content"
-            android:text="-"/>
+            android:layout_height="40dp"
+            android:layout_marginLeft="8dp"
+            android:text="-"
+            android:background="@color/unselectedButton"/>
         <Button
             android:id="@+id/btMul"
             android:layout_width="40dp"
-            android:layout_height="wrap_content"
-            android:text="*"/>
+            android:layout_height="40dp"
+            android:layout_marginLeft="8dp"
+            android:text="*"
+            android:background="@color/unselectedButton"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llDet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/llBt1"
+        android:layout_centerHorizontal="true">
         <Button
             android:id="@+id/btDet"
             android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:text="|A|"/>
+            android:layout_height="40dp"
+            android:text="|A|"
+            android:background="@color/unselectedButton"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="="/>
+            android:textSize="25dp"
+            android:text=" = "/>
         <EditText
             android:id="@+id/etDeterminant"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="numberSigned"
             android:scrollHorizontally="true"
             android:singleLine="true"
+            android:focusable="false"
             android:gravity="right|center_vertical" />
     </LinearLayout>
 
@@ -58,7 +75,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_below="@id/llBt1"
+        android:layout_below="@+id/llDet"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="40dp">
         <Button

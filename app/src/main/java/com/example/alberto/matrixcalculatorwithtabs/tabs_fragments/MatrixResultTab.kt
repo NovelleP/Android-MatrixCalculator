@@ -1,5 +1,6 @@
 package com.example.alberto.matrixcalculatorwithtabs.tabs_fragments
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.util.Log
@@ -16,7 +17,7 @@ import com.example.alberto.matrixcalculatorwithtabs.matrixCalculator.MatrixCalcu
 import kotlinx.android.synthetic.main.matrix_result.*
 
 class MatrixResultTab : Fragment() {
-    var operation: String? = null
+    var operation: Button? = null
     var matrix3: Array<Array<Float>> = Array(3, { Array(3, { 0f }) })
     var adapter3: GridViewAdapter? = null
     var det: Float = 0f
@@ -28,12 +29,13 @@ class MatrixResultTab : Fragment() {
         return view
     }
 
+    @SuppressLint("ResourceAsColor")
     private fun setUpGUI(container: ViewGroup, view: View, inflater: LayoutInflater) {
         var rows = MatrixBTab.matrix.size
         var columns = MatrixBTab.matrix[0].size
         matrix3 = Array(rows, { Array(columns, { 0f }) })
         adapter3 = GridViewAdapter(container.context, matrix3)
-        var gvM3 = view.findViewById<GridView>(R.id.gvMatrix3) as GridView
+        var gvM3 = view.findViewById(R.id.gvMatrix3) as GridView
         gvM3.numColumns = columns
         gvM3.adapter = adapter3
         val buttonAdd = view.findViewById(R.id.btAdd) as Button
@@ -44,21 +46,35 @@ class MatrixResultTab : Fragment() {
         val buttonResult = view.findViewById(R.id.btResult) as Button
 
         buttonAdd.setOnClickListener {
-            operation = "+"
-            resizeAddSub(container!!)
+            if(operation != null)
+                operation!!.setBackgroundColor(resources.getColor(R.color.unselectedButton))
+            operation = buttonAdd
+            resizeAddSub(container)
+            buttonAdd.setBackgroundColor(resources.getColor(R.color.selectedButton))
         }
         buttonSub.setOnClickListener {
-            operation = "-"
-            resizeAddSub(container!!)
+            if(operation != null)
+                operation!!.setBackgroundColor(resources.getColor(R.color.unselectedButton))
+            operation = buttonSub
+            resizeAddSub(container)
+            buttonSub.setBackgroundColor(resources.getColor(R.color.selectedButton))
         }
         buttonMul.setOnClickListener {
-            operation = "*"
-            resizeMul(container!!)
+            if(operation != null)
+                operation!!.setBackgroundColor(resources.getColor(R.color.unselectedButton))
+            operation = buttonMul
+            resizeMul(container)
+            buttonMul.setBackgroundColor(resources.getColor(R.color.selectedButton))
         }
         buttonDet.setOnClickListener {
-            operation = "|A|"
+            if(operation != null)
+                operation!!.setBackgroundColor(resources.getColor(R.color.unselectedButton))
+            operation = buttonDet
+            buttonDet.setBackgroundColor(resources.getColor(R.color.selectedButton))
         }
         buttonReset.setOnClickListener {
+            if(operation != null)
+                operation!!.setBackgroundColor(resources.getColor(R.color.unselectedButton))
             resetMatrix(matrix3)
             adapter3!!.notifyDataSetChanged()
             det = 0f
@@ -82,28 +98,28 @@ class MatrixResultTab : Fragment() {
             }
 
             when (operation) {
-                "+" -> {
+                buttonAdd -> {
                     if (matrix1.size == matrix2.size && matrix1[0].size == matrix2[0].size)
                         MatrixCalculator.add(matrix1, matrix2, matrix3)
                     else
                         Toast.makeText(container.context, "wrong size", Toast.LENGTH_LONG).show()
                 }
 
-                "-" -> {
+                buttonSub -> {
                     if (matrix1.size == matrix2.size && matrix1[0].size == matrix2[0].size)
                         MatrixCalculator.subtract(matrix1, matrix2, matrix3)
                     else
                         Toast.makeText(container.context, "wrong size", Toast.LENGTH_LONG).show()
                 }
 
-                "*" -> {
+                buttonMul -> {
                     if (matrix1[0].size == matrix2.size)
                         MatrixCalculator.multiply(matrix1, matrix2, matrix3)
                     else
                         Toast.makeText(container.context, "wrong size", Toast.LENGTH_LONG).show()
                 }
 
-                "|A|" -> {
+                buttonDet -> {
                     if(matrix1.size== matrix1[0].size )
                         det = MatrixCalculator.determinant(matrix1)
                     else
@@ -113,19 +129,23 @@ class MatrixResultTab : Fragment() {
                 else -> Toast.makeText(container.context, "An operation must be selected", Toast.LENGTH_LONG).show()
             }
 
-            if (!operation.equals("|A|") && operation != null) {
+            if (operation != buttonDet && operation != null) {
                 if (!isMatrix1Empty && !isMatrix2Empty)
                     showResult()
                 else
                     Toast.makeText(container.context, "MatrixA and MatrixB must be complete", Toast.LENGTH_LONG).show()
             }
-            else if (operation.equals("|A|")) {
+            else if (operation == buttonDet) {
                 if(!isMatrix1Empty)
                     setDeterminant()
                 else
                     Toast.makeText(container.context, "MatrixA must be complete", Toast.LENGTH_LONG).show()
             }
         }
+    }
+
+    private fun deselectButton() {
+
     }
 
     private fun resizeAddSub(container: ViewGroup) {
